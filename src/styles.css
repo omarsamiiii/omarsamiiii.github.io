@@ -1,0 +1,146 @@
+/* ========= Theme ========= */
+:root{
+  --accent:#0F766E;             /* teal brand */
+  --bg:#0b0f14;                 /* deep black-blue */
+  --panel:#0f141b;              /* card base */
+  --text:#E5E7EB;               /* body text */
+  --muted:#9CA3AF;              /* secondary */
+  --ring:rgba(15,118,110,.35);  /* shadow glow */
+  /* vibrant accents for icons/chips */
+  --c-mail:#22c55e;     /* green 500 */
+  --c-link:#60a5fa;     /* blue 400 */
+  --c-git:#a78bfa;      /* violet 400 */
+  --c-web:#5eead4;      /* teal 300 */
+}
+
+*{box-sizing:border-box}
+html,body{margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  font-family:ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,"Apple Color Emoji","Segoe UI Emoji";
+  color:var(--text);
+  line-height:1.6;
+  background:
+    radial-gradient(1200px 600px at 85% -10%, rgba(15,118,110,.18), transparent),
+    radial-gradient(900px 400px at -10% 10%, rgba(15,118,110,.12), transparent),
+    var(--bg);
+  /* animated subtle gradient film */
+  background-attachment: fixed;
+  animation: drift 18s ease-in-out infinite alternate;
+}
+@keyframes drift{
+  0%{background-position: 0px 0px, 0px 0px, 0 0;}
+  100%{background-position: 20px -10px, -20px 10px, 0 0;}
+}
+
+a{color:var(--text);text-decoration:none}
+a:hover{color:#fff}
+
+.container{max-width:980px;margin:0 auto;padding:24px}
+
+/* ========= Hero ========= */
+.hero{text-align:center;padding:72px 0 28px}
+.name{
+  font-size: clamp(34px, 5.2vw, 56px);
+  font-weight: 900;
+  letter-spacing:.2px;
+  line-height:1.15;
+  /* subtle gradient ink on text */
+  background: linear-gradient(90deg,#e5e7eb, #cbd5e1 50%, #e5e7eb);
+  -webkit-background-clip:text;background-clip:text;color:transparent;
+  background-size: 200% 100%;
+  animation: shimmer 12s linear infinite;
+}
+@keyframes shimmer{
+  0%{background-position:0% 0}
+  100%{background-position:-200% 0}
+}
+.profile-pic {
+  width: 180px;
+  height: 180px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-bottom: 16px;
+  border: 6px solid var(--accent);
+  box-shadow: 0 0 30px var(--ring);
+}
+.tagline{color:var(--muted);margin-top:8px}
+
+/* ========= Chip links ========= */
+.links{display:flex;gap:16px;justify-content:center;flex-wrap:wrap;margin-top:18px}
+.chip{
+  position:relative; overflow:hidden;
+  display:inline-flex; align-items:center; gap:10px;
+  padding:10px 14px; border-radius:999px;
+  background: linear-gradient(180deg, #0f766e20, #0f766e10);
+  border: 1px solid #0f766e55;
+  transition: transform .18s ease, box-shadow .25s ease, border-color .2s ease, background .25s ease, filter .2s ease;
+  filter: saturate(1.05);
+}
+.chip svg{width:16px;height:16px;opacity:.95}
+.chip:hover{ transform: translateY(-2px); box-shadow: 0 16px 40px -24px var(--ring); }
+
+/* sheen on hover */
+.chip::after{
+  content:""; position:absolute; inset:-40% -20% auto auto; width:45%; height:200%;
+  transform: rotate(25deg) translateX(120%);
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,.25), transparent);
+  transition: transform .6s ease;
+}
+.chip:hover::after{ transform: rotate(25deg) translateX(-40%); }
+
+/* per-chip colors (icon + border glow) */
+.chip.mail      { border-color: color-mix(in srgb, var(--c-mail) 60%, #0b0f14); }
+.chip.mail svg  { color: var(--c-mail); fill: currentColor; }
+.chip.linkedin  { border-color: color-mix(in srgb, var(--c-link) 60%, #0b0f14); }
+.chip.linkedin svg{ color: var(--c-link); fill: currentColor; }
+.chip.github    { border-color: color-mix(in srgb, var(--c-git) 60%, #0b0f14); }
+.chip.github svg{ color: var(--c-git); fill: currentColor; }
+.chip.web       { border-color: color-mix(in srgb, var(--c-web) 60%, #0b0f14); }
+.chip.web svg   { color: var(--c-web); fill: currentColor; }
+
+/* ========= Nav ========= */
+.nav{position:sticky;top:0;z-index:10;backdrop-filter:blur(8px);
+  background:linear-gradient(180deg, rgba(15,17,21,.65), rgba(15,17,21,.15));
+  border-bottom:1px solid #1f293755}
+.nav-inner{display:flex;gap:18px;align-items:center;justify-content:center;padding:10px 0}
+.nav-inner a{color:var(--muted);font-weight:600;letter-spacing:.2px; transition: color .2s ease, text-shadow .2s ease;}
+.nav-inner a:hover{color:#fff; text-shadow: 0 0 8px rgba(255,255,255,.5);}
+
+/* ========= Sections & cards ========= */
+section{padding:64px 0 28px}
+h2{font-size:20px;letter-spacing:.3px;color:var(--text);margin:0 0 12px}
+.kicker{font-size:12px;letter-spacing:.2em;color:var(--muted);text-transform:uppercase;margin-bottom:8px}
+
+.card{
+  background: linear-gradient(180deg, #121722, #0f141b);
+  border: 1px solid #1f2937; border-radius: 16px; padding: 20px 20px;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.02), 0 18px 48px -28px rgba(0,0,0,.7);
+  transition: transform .2s ease, box-shadow .25s ease, border-color .2s ease;
+}
+.card:hover{ transform: translateY(-4px); border-color:#2a3b51; box-shadow: 0 24px 72px -44px rgba(0,0,0,.8), 0 0 0 1px #203042 inset; }
+
+.grid{display:grid;gap:18px;grid-template-columns:repeat(auto-fit,minmax(260px,1fr))}
+.pill{display:inline-block;padding:3px 8px;border-radius:999px;border:1px solid #0f766e55;color:#d1fae5;background:#065f4611;font-size:12px;margin-right:6px}
+.btn{display:inline-flex;align-items:center;gap:10px;padding:10px 14px;border-radius:12px;border:1px solid #0f766e66;background:#0f766e1a;font-weight:600; transition: background .2s ease, transform .2s ease, box-shadow .2s ease;}
+.btn:hover{ background: #0f766e3a; transform: translateY(-2px); box-shadow: 0 8px 20px -10px var(--ring); }
+
+.cta{display:flex;gap:12px;flex-wrap:wrap}
+
+footer{padding:46px 0;text-align:center;color:var(--muted);font-size:14px}
+footer a{color:#5eead4}
+
+/* ========= Reveal on scroll ========= */
+.reveal{opacity:0; transform: translateY(12px) scale(.98); transition: opacity .6s ease, transform .6s ease}
+.reveal.reveal--visible{opacity:1; transform: translateY(0) scale(1)}
+.reveal.delay-1{transition-delay:.05s}
+.reveal.delay-2{transition-delay:.12s}
+.reveal.delay-3{transition-delay:.18s}
+
+/* Accessibility: reduce motion */
+@media (prefers-reduced-motion: reduce){
+  .chip:hover, .card:hover { transform:none; box-shadow:none }
+  .chip::after{ display:none }
+  .reveal{ transition:none }
+  .name{ animation:none; background:none; color:var(--text) }
+}
